@@ -1,4 +1,4 @@
-package pacmanGame;
+package game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,19 +15,23 @@ public class Game extends JPanel{
 	}
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		double h = this.HEIGHT;
-		double w = this.WIDTH;
-
+		//this.scaleGraphics(g);
 		g2d.setColor(Color.YELLOW);
-		g2d.fillOval(0, 0, 30, 30);
+		g2d.fillOval(1280/2-15, 720/2-15, 30, 30);
 	}
 	public static JFrame createGameFrame(){
 		JFrame gameFrame = new JFrame("Pacman Clone");
 		gameFrame.add(new Game());
-		gameFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		gameFrame.setSize(1280*3/2, 720*3/2);
         gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         gameFrame.setVisible(true);
         return gameFrame;
+	}
+	public void scaleGraphics(Graphics g){
+		Graphics2D g2d = (Graphics2D) g;
+		double w = this.getSize().width;
+        double h = this.getSize().height;
+        g2d.scale(w/1280, h/720);
 	}
 	
 }
